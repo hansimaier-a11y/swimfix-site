@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Upload – SwimFix</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <script src="config.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div id="brandName">SwimFix</div>
+      </div>
+      <div class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="index.html#pricing">Pricing</a>
+      </div>
+    </div>
+
+    <section class="hero" style="padding-top:28px">
+      <div class="h1" style="font-size:34px">Send your video</div>
+      <div class="sub" style="max-width:880px">
+        MVP workflow: share your clip as an <b>iCloud</b> or <b>Google Drive</b> link, then send it via email with a few details.
+      </div>
+
+      <div class="grid">
+        <div class="card half">
+          <div class="h2">Step 1 — Create a share link</div>
+          <ul class="list">
+            <li>iPhone: Photos → video → Share → “Copy iCloud Link”</li>
+            <li>Or Google Drive → Share → “Anyone with the link can view”</li>
+            <li>Clip length: <b>20–30 seconds</b> (max 45s)</li>
+          </ul>
+        </div>
+
+        <div class="card half">
+          <div class="h2">Step 2 — Email the details</div>
+          <p class="p">Click the button below. It opens an email draft you just send.</p>
+
+          <div class="ctaRow" style="margin-top:14px">
+            <a class="btn btnPrimary" id="mailBtn" href="#">Open email draft</a>
+            <a class="btn btnGhost" href="index.html">Back</a>
+          </div>
+
+          <p class="small">
+            Tip: Stripe sends a receipt email. Paste the receipt reference (or your payment email) into the message.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="h2">What to include</div>
+          <ul class="list">
+            <li>Payment email / receipt reference</li>
+            <li>Stroke(s): free/back/breast/fly</li>
+            <li>Your goal: e.g. “faster 100m”, “better breathing”, “triathlon swim”</li>
+            <li>Pool length: 25m / 50m</li>
+            <li>Video link</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>
+        <a href="impressum.html">Impressum</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function getParam(name){
+      const u = new URL(window.location.href);
+      return u.searchParams.get(name) || "";
+    }
+
+    const cfg = window.SWIMFIX || {};
+    document.getElementById("brandName").textContent = cfg.brand || "SwimFix";
+
+    const to = cfg.supportEmail || "support@YOURDOMAIN.com";
+    const subject = encodeURIComponent("SwimFix – Video submission");
+
+    const ref = getParam("ref") || localStorage.getItem("swimfix_ref") || "";
+    const sessionId = getParam("session_id") || "";
+
+    const body = encodeURIComponent(
+`Hi SwimFix,
+
+Here are my details:
+
+- Payment email / receipt reference:
+- Stripe session_id (optional): ${sessionId}
+- Referral (optional): ${ref}
+
+- Stroke(s):
+- Goal:
+- Pool length (25m/50m):
+- Skill level (beginner/intermediate/advanced):
+- Biggest issue (optional):
+- Video link:
+
+Thanks!`
+    );
+
+    document.getElementById("mailBtn").href = `mailto:${to}?subject=${subject}&body=${body}`;
+  </script>
+</body>
+</html>
