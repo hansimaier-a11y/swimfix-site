@@ -64,7 +64,7 @@
     </section>
 
     <div class="footer">
-      <div>Contact: <a href="mailto:info.coldcharge.com">info.coldcharge.com</a></div>
+      <div>Contact: <a id="contactEmail" href="mailto:info.coldcharge.com">info.coldcharge.com</a></div>
     </div>
     </div>
   </div>
@@ -76,6 +76,11 @@
     }
 
     const cfg = window.SWIMFIX || {};
+
+    const email = cfg.supportEmail || "info.coldcharge.com";
+    const ce = document.getElementById("contactEmail");
+    if (ce) { ce.textContent = email; ce.href = `mailto:`; }
+
     document.getElementById("brandName").textContent = cfg.brand || "SwimFix";
 
     const to = cfg.supportEmail || "info.coldcharge.com";
