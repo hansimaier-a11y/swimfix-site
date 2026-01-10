@@ -82,7 +82,7 @@
     const cfg = window.SWIMFIX || {};
     document.getElementById("brandName").textContent = cfg.brand || "SwimFix";
 
-    const to = cfg.supportEmail || "support@YOURDOMAIN.com";
+    const to = cfg.supportEmail || "info.coldcharge.com";
     const subject = encodeURIComponent("SwimFix – Video submission");
 
     const ref = getParam("ref") || localStorage.getItem("swimfix_ref") || "";
