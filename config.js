@@ -1,7 +1,6 @@
 window.SWIMFIX = {
   brand: "SwimFix",
-  supportEmail: "info.coldcharge.com",   // TODO: replace
-  // Stripe Payment Links (replace with your real links)
+  supportEmail: "info.coldcharge@gmail.com",
   stripe: {
     quick: "YOUR_STRIPE_LINK_QUICK",
     full: "YOUR_STRIPE_LINK_FULL",
