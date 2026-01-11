@@ -17,56 +17,117 @@
       </div>
       <div class="navlinks">
         <a href="index.html">Home</a>
-        <a href="index.html#pricing">Pricing</a>
       </div>
     </div>
 
     <section class="hero" style="padding-top:28px">
-      <div class="h1" style="font-size:34px">Send your video</div>
-      <div class="sub" style="max-width:880px">
-        MVP workflow: share your clip as an <b>iCloud</b> or <b>Google Drive</b> link, then send it via email with a few details.
+      <div class="h1" style="font-size:34px">Upload your swim video</div>
+      <div class="sub" style="max-width:900px">
+        Share your clip as an <b>iCloud</b> or <b>Google Drive</b> link and submit details below.
+        <br/>
+        If you haven’t paid yet, we’ll reply with a Stripe checkout link.
       </div>
 
       <div class="grid">
         <div class="card half">
           <div class="h2">Step 1 — Create a share link</div>
           <ul class="list">
-            <li>iPhone: Photos → video → Share → “Copy iCloud Link”</li>
+            <li>iPhone Photos → Share → “Copy iCloud Link”</li>
             <li>Or Google Drive → Share → “Anyone with the link can view”</li>
-            <li>Clip length: <b>20–30 seconds</b> (max 45s)</li>
+            <li>Clip length: <b>20–45 seconds</b></li>
+            <li>Steady camera, good light</li>
           </ul>
         </div>
 
         <div class="card half">
-          <div class="h2">Step 2 — Email the details</div>
-          <p class="p">Click the button below. It opens an email draft you just send.</p>
+          <div class="h2">Step 2 — Submit your details</div>
 
-          <div class="ctaRow" style="margin-top:14px">
-            <a class="btn btnPrimary" id="mailBtn" href="#">Open email draft</a>
-            <a class="btn btnGhost" href="index.html">Back</a>
-          </div>
+          <form id="sfForm" style="margin-top:8px">
+            <div style="display:grid; grid-template-columns:1fr; gap:10px">
+              <label style="display:grid; gap:6px">
+                <span class="p" style="font-weight:800">Package</span>
+                <select id="pkg" class="btn" style="justify-content:flex-start; background:#fff">
+                  <option value="Quick Fix">Quick Fix</option>
+                  <option value="Full Review">Full Review</option>
+                  <option value="Monthly (Full Reviews)">Monthly (Full Reviews)</option>
+                </select>
+              </label>
 
-          <p class="small">
-            Tip: Stripe sends a receipt email. Paste the receipt reference (or your payment email) into the message.
-          </p>
+              <label style="display:grid; gap:6px">
+                <span class="p" style="font-weight:800">Video link</span>
+                <input id="video" class="btn" style="justify-content:flex-start; background:#fff"
+                       placeholder="Paste iCloud/Drive link here" required />
+              </label>
+
+              <label style="display:grid; gap:6px">
+                <span class="p" style="font-weight:800">Stroke(s)</span>
+                <input id="stroke" class="btn" style="justify-content:flex-start; background:#fff"
+                       placeholder="e.g., freestyle, breaststroke" />
+              </label>
+
+              <label style="display:grid; gap:6px">
+                <span class="p" style="font-weight:800">Goal</span>
+                <input id="goal" class="btn" style="justify-content:flex-start; background:#fff"
+                       placeholder="e.g., faster 100m, better breathing, triathlon swim" />
+              </label>
+
+              <label style="display:grid; gap:6px">
+                <span class="p" style="font-weight:800">Skill level</span>
+                <select id="level" class="btn" style="justify-content:flex-start; background:#fff">
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate" selected>Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                </select>
+              </label>
+
+              <label style="display:grid; gap:6px">
+                <span class="p" style="font-weight:800">Anything specific you want help with? (optional)</span>
+                <textarea id="notes" class="btn" style="justify-content:flex-start; background:#fff; min-height:110px; white-space:pre-wrap"
+                          placeholder="e.g., hips sinking, timing, kick, breathing, catch..."></textarea>
+              </label>
+
+              <div class="hr"></div>
+
+              <div class="p" style="font-weight:900">Payment info (optional)</div>
+
+              <label style="display:grid; gap:6px">
+                <span class="p" style="font-weight:800">Stripe session_id (if you were redirected here)</span>
+                <input id="session" class="btn" style="justify-content:flex-start; background:#fff"
+                       placeholder="e.g., cs_test_..." />
+              </label>
+
+              <label style="display:grid; gap:6px">
+                <span class="p" style="font-weight:800">Payment email / receipt reference</span>
+                <input id="payref" class="btn" style="justify-content:flex-start; background:#fff"
+                       placeholder="Optional but helpful" />
+              </label>
+
+              <label style="display:flex; gap:10px; align-items:flex-start; margin-top:4px">
+                <input id="rights" type="checkbox" style="margin-top:3px" required />
+                <span class="p">I confirm I own the rights to this video (or have permission to submit it).</span>
+              </label>
+
+              <div class="ctaRow" style="margin-top:10px">
+                <a class="btn btnPrimary" id="mailBtn" href="#">Open email draft</a>
+                <button class="btn btnGhost" id="copyBtn" type="button">Copy text</button>
+              </div>
+
+              <p class="small" id="hint">
+                If nothing happens when clicking “Open email draft”, your device may block mailto-links.
+                Use “Copy text” and paste it into an email to <span class="kbd" id="supportMail">info.coldcharge@gmail.com</span>.
+              </p>
+            </div>
+          </form>
         </div>
 
         <div class="card">
-          <div class="h2">What to include</div>
-          <ul class="list">
-            <li>Payment email / receipt reference</li>
-            <li>Stroke(s): free/back/breast/fly</li>
-            <li>Your goal: e.g. “faster 100m”, “better breathing”, “triathlon swim”</li>
-            <li>Video link</li>
-          </ul>
+          <div class="h2">Contact</div>
+          <p class="p">
+            Contact: <a id="contactEmail" href="mailto:info.coldcharge@gmail.com">info.coldcharge@gmail.com</a>
+          </p>
         </div>
       </div>
     </section>
-
-    <div class="footer">
-      <div>Contact: <a id="contactEmail" href="mailto:info.coldcharge.com">info.coldcharge.com</a></div>
-    </div>
-    </div>
   </div>
 
   <script>
@@ -76,38 +137,85 @@
     }
 
     const cfg = window.SWIMFIX || {};
+    const brand = cfg.brand || "SwimFix";
+    const supportEmail = cfg.supportEmail || "info.coldcharge@gmail.com";
 
-    const email = cfg.supportEmail || "info.coldcharge.com";
+    document.getElementById("brandName").textContent = brand;
+    document.getElementById("supportMail").textContent = supportEmail;
+
     const ce = document.getElementById("contactEmail");
-    if (ce) { ce.textContent = email; ce.href = `mailto:`; }
+    ce.textContent = supportEmail;
+    ce.href = `mailto:${supportEmail}`;
 
-    document.getElementById("brandName").textContent = cfg.brand || "SwimFix";
+    const pkg = document.getElementById("pkg");
+    const video = document.getElementById("video");
+    const stroke = document.getElementById("stroke");
+    const goal = document.getElementById("goal");
+    const level = document.getElementById("level");
+    const notes = document.getElementById("notes");
+    const session = document.getElementById("session");
+    const payref = document.getElementById("payref");
+    const rights = document.getElementById("rights");
 
-    const to = cfg.supportEmail || "info.coldcharge.com";
-    const subject = encodeURIComponent("SwimFix – Video submission");
+    const planParam = (getParam("plan") || "").toLowerCase();
+    if(planParam.includes("quick")) pkg.value = "Quick Fix";
+    if(planParam.includes("full")) pkg.value = "Full Review";
+    if(planParam.includes("month")) pkg.value = "Monthly (Full Reviews)";
 
-    const ref = getParam("ref") || localStorage.getItem("swimfix_ref") || "";
-    const sessionId = getParam("session_id") || "";
+    const sid = getParam("session_id");
+    if(sid) session.value = sid;
 
-    const body = encodeURIComponent(
-`Hi SwimFix,
+    function buildEmailText(){
+      const lines = [
+        `Hi ${brand},`,
+        ``,
+        `PACKAGE: ${pkg.value}`,
+        ``,
+        `VIDEO LINK: ${video.value || ""}`,
+        ``,
+        `STROKE(S): ${stroke.value || ""}`,
+        `GOAL: ${goal.value || ""}`,
+        `LEVEL: ${level.value || ""}`,
+        ``,
+        `PAYMENT (optional):`,
+        `- Stripe session_id: ${session.value || ""}`,
+        `- Payment email / receipt reference: ${payref.value || ""}`,
+        ``,
+        `NOTES (optional):`,
+        `${notes.value || ""}`,
+        ``,
+        `Thanks!`
+      ];
+      return lines.join("\n");
+    }
 
-Here are my details:
+    function updateMailto(){
+      const subject = encodeURIComponent(`${brand} – Video submission`);
+      const body = encodeURIComponent(buildEmailText());
+      document.getElementById("mailBtn").href = `mailto:${supportEmail}?subject=${subject}&body=${body}`;
+    }
 
-- Payment email / receipt reference:
-- Stripe session_id (optional): ${sessionId}
-- Referral (optional): ${ref}
+    ["change","input"].forEach(evt => {
+      [pkg, video, stroke, goal, level, notes, session, payref].forEach(el => el.addEventListener(evt, updateMailto));
+    });
 
-- Stroke(s):
-- Goal:
-- Skill level (beginner/intermediate/advanced):
-- Biggest issue (optional):
-- Video link:
+    updateMailto();
 
-Thanks!`
-    );
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(buildEmailText());
+        document.getElementById("copyBtn").textContent = "Copied ✓";
+        setTimeout(()=> document.getElementById("copyBtn").textContent = "Copy text", 1200);
+      }catch(e){
+        alert("Copy failed. Please manually select and copy the text after clicking Open email draft.");
+      }
+    });
 
-    document.getElementById("mailBtn").href = `mailto:${to}?subject=${subject}&body=${body}`;
+    rights.addEventListener("change", () => {
+      document.getElementById("mailBtn").style.pointerEvents = rights.checked ? "auto" : "none";
+      document.getElementById("mailBtn").style.opacity = rights.checked ? "1" : ".5";
+    });
+    rights.dispatchEvent(new Event("change"));
   </script>
 </body>
 </html>
