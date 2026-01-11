@@ -90,7 +90,7 @@
             <li>Delivery: 48h</li>
           </ul>
           <div class="hr"></div>
-          <a class="btn btnPrimary" id="buyQuick" href="#">Pay & upload</a>
+          <a id="payQuick" class="btn btnPrimary" id="buyQuick" href="#">Pay & upload</a>
         </div>
 
         <div class="priceCard">
@@ -104,7 +104,7 @@
             <li>Delivery: 48h</li>
           </ul>
           <div class="hr"></div>
-          <a class="btn btnPrimary" id="buyFull" href="#">Pay & upload</a>
+          <a id="payFull" class="btn btnPrimary" id="buyFull" href="#">Pay & upload</a>
         </div>
 
         <div class="priceCard">
@@ -174,6 +174,13 @@
     const quick = cfg.stripe?.quick || "#";
     const full = cfg.stripe?.full || "#";
     const monthly = cfg.stripe?.monthly || "#";
+
+    const q=document.getElementById("payQuick");
+    const f=document.getElementById("payFull");
+    const m=document.getElementById("payMonthly");
+    if(q){ q.href=quick; q.target="_blank"; }
+    if(f){ f.href=full; f.target="_blank"; }
+    if(m){ m.href=monthly; m.target="_blank"; }
     document.getElementById("buyQuick").href = withUtm(quick, savedRef);
     document.getElementById("buyFull").href = withUtm(full, savedRef);
     document.getElementById("buyMonthly").href = withUtm(monthly, savedRef);
